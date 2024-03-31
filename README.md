@@ -1,16 +1,50 @@
-# Tauri + Vue 3 + TypeScript
+# Tauri_beta + Vuetify (Layouts+Pinia) + TS
 
 This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+## template init
+```
+pnpm install
+pnpm tauri dev
+```
+for mobile dev, run above then:
+```
+pnpm tauri android init
+pnpm tauri android dev
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+## how to make my own tauri-vite template
+#### 1. New 2 project: `tauri-app` and `your-vite`
+```
+pnpm create tauri --beta
+pnpm create vuetify
+```
+>[!CAUTION]
+> DON'T run `pnpm install` or `pnpm run dev`, it will make it more complicate.
 
-## Type Support For `.vue` Imports in TS
+#### 2. push blank tauri to a new repo
+#### 3. copy `.git` folder from `tauri-app` into `your-vite`
+#### 4. open `your-vite`, merge conflicts
+- Untrack added files, just accepct
+- Deleted files, just discard changes
+- Modified files, you have to check them:
+e.g. [package.json](https://github.com/AClon314/tauri-vuetify-template/blob/main/package.json#L3-L9), `main.ts`, `vite.config.ts`, `tsconfig.node.json`, some `.gitignore` files, etc. You can check [commits](https://github.com/AClon314/tauri-vuetify-template/commit/f42cf178d1cb683155a1f5186f0fdd807103d58c) as reference.
+#### 5. test OK **then** push `your-vite`, check your repo😉
+Source code only: before push, discard changes(also will delete) with the generated files.
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+## how to migrate tauri into exsisting project
+copy your exisiting project `src` into `your-template`, merge conflicts.
+_that's the most painful moment_
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+## common Errors
+>[!CAUTION] 
+> Error: listen EACCES: permission denied ::1:1420
+> change `tauri.conf.json` and `vite.config.mts` dev server port
+> Or:
+```bat
+net stop winnat
+net start winnat
+```
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+>[!NOTE] 
+> `tauri.conf.json` can't use props `acrylic`,`transparent`,`decoration`, will cause android error.
