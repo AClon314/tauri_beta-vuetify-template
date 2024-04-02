@@ -47,4 +47,4 @@ net start winnat
 ```
 
 >[!NOTE] 
-> `tauri.conf.json` can't use props `acrylic`,`transparent`,`decoration`, will cause android error.
+> `tauri.conf.json` can't use props `transparent`, will cause android error.
